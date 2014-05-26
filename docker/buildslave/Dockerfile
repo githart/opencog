@@ -15,9 +15,9 @@ RUN adduser --disabled-password -uid 1099 --gecos "Buildbot,,," --home /buildbot
 
 RUN su buildbot sh -c "buildslave create-slave --umask=022 /buildbot buildbot.opencog.org:9989 BUILDSLAVE_NAME BUILDSLAVE_PASSWD"
 
-ADD opencog /buildbot/opencog_master_trusty/build
+ADD opencog /buildbot/trusty_amd64/build
 RUN chown -R buildbot:buildbot /buildbot
-WORKDIR /buildbot/opencog_master_trusty/build
+WORKDIR /buildbot/trusty_amd64/build
 
 RUN git remote rm origin
 RUN git remote add origin git://github.com/opencog/opencog
