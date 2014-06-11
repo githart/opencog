@@ -14,6 +14,6 @@ Docker image structure:
       ├─opencog-distcc
       ├─opencog-embodiment
 
-Using bind mounts (some containers currently use them) is a hacky solution
-to passing the opencog source tree to each docker build. Run bindmounts.sh
-before running 'docker build' and bindumount.sh to clean up afterward.
+Using bind mounts (some containers currently use them, as detailed in the
+comments section of some Dockerfiles) is a hacky solution to passing the
+opencog source tree to each docker build.

@@ -1,5 +1,6 @@
 # For use with Docker https://www.docker.io/gettingstarted/
 #
+# sudo mount -v --bind ~/opencog ~/opencog/docker/buildslave/opencog
 # docker build -t $USER/opencog-buildslave .
 # docker run -d -e BUILDSLAVE_NAME=$HOSTNAME -e BUILDSLAVE_PASSWD=foobar $USER/opencog-buildslave
 
@@ -33,7 +34,8 @@ RUN git remote add origin git://github.com/opencog/opencog
 # set buildslave admin and host info
 RUN echo "David Hart <dhart@opencog.org>" > /buildbot/info/admin && \
     grep "model name" /proc/cpuinfo | head -1 | cut -d ":" -f 2 | tr -d " " > /buildbot/info/host && \
-    grep DISTRIB_DESCRIPTION /etc/lsb-release | cut -d "=" -f 2 | tr -d "\"" >> /buildbot/info/host
+    grep DISTRIB_DESCRIPTION /etc/lsb-release | cut -d "=" -f 2 | tr -d "\"" >> /buildbot/info/host \
+    echo "https://github.com/opencog/opencog/blob/master/docker/buildslave/Dockerfile" >> /buildbot/info/host
 
 CMD su buildbot sh -c "\
 sed -i s:BUILDSLAVE_NAME:$BUILDSLAVE_NAME:g /buildbot/buildbot.tac && \
